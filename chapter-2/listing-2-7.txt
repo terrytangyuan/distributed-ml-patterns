@@ -1,0 +1,14 @@
+batch = read_next_batch(dataset)  #A
+cache = initialize_cache(batch)  #B
+while batch is not None:  #C
+    model.train(batch)  #C
+    cache.append(batch)  #C
+    batch = read_next_batch(dataset)
+while current_epoch() <= total_epochs:  #D
+    batch = cache.read_next_batch()  #D
+    model.train(batch)  #D
+    
+#A Read the next batch of the dataset.
+#B Initialize the cache for this batch.
+#C Train the model by iterating through the batches.
+#D Train the model for additional epochs using the batches that were cached previously.

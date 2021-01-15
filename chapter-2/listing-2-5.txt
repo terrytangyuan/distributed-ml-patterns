@@ -1,0 +1,8 @@
+batch = read_next_batch(dataset)  #A
+while batch is not None:
+    model.train(batch) #B
+    batch = read_next_batch(dataset)  #C
+
+#A Read the next batch in the dataset.
+#B Train the model with this batch.
+#C Read the next batch once we are done training with the current batch.
