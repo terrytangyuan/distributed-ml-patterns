@@ -1,6 +1,6 @@
 # Distributed Machine Learning Patterns
 
-<img align="right" src="images/book-front-cover.png" alt="book-front-cover" width="40%" height="10%">
+<img align="right" src="images/book-front-cover.png" alt="book-front-cover" width="50%" height="50%">
 
 This repository contains references and code for the book *Distributed Machine Learning Patterns* by Yuan Tang from [Manning Publications](https://www.manning.com/).
 
