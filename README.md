@@ -1,16 +1,11 @@
-# dmlp-code
+# Distributed Machine Learning Patterns
 
-## Installation
+This repository contains references and code for my book *Distributed Machine Learning Patterns* from Manning Publications.
 
-* Install Python.
-* Run the following to install the necessary Python packages:
+:fire: The book is now available on the Manning Early Access Program [here](https://www.manning.com/books/distributed-machine-learning-patterns). You can read the book chapter-by-chapter while it's being written and get the final eBook as soon as it's finished. If you pre-order the pBook, you'll get it long before it's available in stores.
 
-```bash
-pip install tensorflow tensorflow_io
-```
+The code listings in this book is available [here](code). 
 
-## Instructions
-
-* All code snippets are organized by chapters and the the listing title. For example, `chapter-2/listing-2-1.py` is for Listing 2.1 in Chapter 2.
-* Files with `*.py` extension can be executed via `python *.py`.
-* Files with `*.txt` extension are pseudo-code and are not meant to be executed.
+<p align="center">
+	<a href="https://www.manning.com/books/distributed-machine-learning-patterns"><img src="images/book-front-cover.png" alt="book-front-cover"></a>
+</p>
