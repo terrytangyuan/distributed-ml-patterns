@@ -11,7 +11,7 @@ This repository contains references and code for the book *Distributed Machine L
 In *Distributed Machine Learning Patterns* you will learn how to:
 
 * Apply patterns to build scalable and reliable machine learning systems.
-* Construct machine learning pipelines with data ingestion, distributed training, model serving, etc.
+* Construct machine learning pipelines with data ingestion, distributed training, model serving, and more.
 * Automate machine learning tasks with [Kubernetes](https://kubernetes.io/), [TensorFlow](https://www.tensorflow.org/), [Kubeflow](https://www.kubeflow.org/), and [Argo Workflows](https://argoproj.github.io/argo-workflows/).
 * Make trade off decisions between different patterns and approaches.
 * Manage and monitor machine learning workloads at scale.
