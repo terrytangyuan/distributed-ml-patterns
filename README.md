@@ -2,7 +2,7 @@
 
 <img align="right" src="images/book-front-cover.png" alt="book-front-cover" width="50%" height="50%">
 
-This repository contains references and code for the book *Distributed Machine Learning Patterns* by Yuan Tang from [Manning Publications](https://www.manning.com/).
+This repository contains references and code for the book *Distributed Machine Learning Patterns* from [Manning Publications](https://www.manning.com/) by [Yuan Tang](https://github.com/terrytangyuan).
 
 :fire: [The book is now available on the Manning Early Access Program](https://www.manning.com/books/distributed-machine-learning-patterns). You can read the book chapter-by-chapter while it's being written and get the final eBook as soon as it's finished. If you pre-order the pBook, you'll get it long before it's available in stores.
 
