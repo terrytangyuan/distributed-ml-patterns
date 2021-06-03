@@ -6,7 +6,7 @@ This repository contains references and code for the book *Distributed Machine L
 
 :fire: [The book is now available on the Manning Early Access Program](https://www.manning.com/books/distributed-machine-learning-patterns). You can read the book chapter-by-chapter while it's being written and get the final eBook as soon as it's finished. If you pre-order the pBook, you'll get it long before it's available in stores.
 
-:bell: Stay tuned for any updates and announcements by [following the author on Twitter](https://twitter.com/TerryTangYuan).
+:bell: Stay tuned for any updates and announcements by following the author on [Twitter](https://twitter.com/TerryTangYuan) and [LinkedIn](https://www.linkedin.com/in/terrytangyuan/).
 
 In *Distributed Machine Learning Patterns* you will learn how to:
 
