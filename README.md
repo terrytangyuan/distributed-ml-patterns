@@ -1,5 +1,8 @@
 # Distributed Machine Learning Patterns
 
+[![Twitter Follow](https://img.shields.io/twitter/follow/TerryTangYuan?style=social)](https://twitter.com/TerryTangYuan)
+[![Twitter Follow](https://img.shields.io/twitter/follow/DistML?style=social)](https://twitter.com/DistML)
+
 <img align="right" src="images/book-front-cover.png" alt="book-front-cover" width="50%" height="50%">
 
 This repository contains references and code for the book *Distributed Machine Learning Patterns* from [Manning Publications](https://www.manning.com/) by [Yuan Tang](https://github.com/terrytangyuan).
