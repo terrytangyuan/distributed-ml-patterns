@@ -5,4 +5,3 @@ namespace: kubeflow
 resources:
 - argo-workflows/
 - kubeflow-training/
-- e2e-demo/

@@ -4,11 +4,11 @@ namespace: kubeflow
 
 resources:
 - https://github.com/argoproj/argo-workflows/releases/download/v3.2.0/install.yaml
-- argo-server-ing.yaml
 
 patchesStrategicMerge:
 - argo-server-dep.yaml
 - argo-server-svc-patch.yaml
 - argo-rbac-patch.yaml
+- workflow-controller-configmap-patch.yaml
 - workflow-controller-crb.yaml
 - argo-server-crb.yaml
