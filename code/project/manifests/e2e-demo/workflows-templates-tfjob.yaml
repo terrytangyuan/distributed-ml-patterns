@@ -1,0 +1,71 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: tfjob-wf-template
+  namespace: kubeflow
+spec:
+  entrypoint: tfjob-wf
+  templates:
+  - name: tfjob-wf
+    steps:
+    - - name: data-ingestion-step
+        template: data-ingestion-step
+        arguments:
+          parameters:
+          - name: min
+            value: 10
+          - name: max
+            value: 30
+          - name: length
+            value: 5
+    - - name: distributed-tf-training-step
+        template: distributed-tf-training-step
+
+  - name: data-ingestion-step
+    serviceAccountName: argo
+    inputs:
+      parameters:
+      - name: min
+      - name: max
+      - name: length
+    memoize:
+      key: "{{inputs.parameters.min}}-{{inputs.parameters.max}}-{{inputs.parameters.length}}"
+      maxAge: "1h"
+      cache:
+        configMap:
+          name: my-config
+          key: step-cache
+    script:
+      image: python:alpine3.6
+      command: [python]
+      source: |
+        import random
+        print(random.sample(range({{inputs.parameters.min}}, {{inputs.parameters.max}}), {{inputs.parameters.length}}))
+
+  - name: distributed-tf-training-step
+    serviceAccountName: training-operator
+    resource:
+      action: create
+      setOwnerReference: true
+      manifest: |
+        apiVersion: kubeflow.org/v1
+        kind: TFJob
+        metadata:
+          namespace: kubeflow
+          generateName: distributed-tfjob-
+        spec:
+          tfReplicaSpecs:
+            Worker:
+              replicas: 2
+              restartPolicy: OnFailure
+              template:
+                spec:
+                  containers:
+                    - name: tensorflow
+                      image: gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
+                      command:
+                        - "python"
+                        - "/var/tf_mnist/mnist_with_summaries.py"
+                        - "--log_dir=/train/metrics"
+                        - "--learning_rate=0.01"
+                        - "--batch_size=100"
