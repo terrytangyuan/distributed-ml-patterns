@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: k8s-resource-
+spec:
+  entrypoint: k8s-resource
+  serviceAccountName: argo
+  templates:
+  - name: k8s-resource
+    resource:
+       action: create
+       manifest: |
+         apiVersion: v1
+         kind: ConfigMap
+         metadata:
+          name: cm-example
+         data:
+          some: value

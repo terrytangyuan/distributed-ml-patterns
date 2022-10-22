@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: script-tmpl-
+spec:
+  entrypoint: gen-random-int
+  serviceAccountName: argo
+  templates:
+  - name: gen-random-int
+    script:
+       image: python:alpine3.6
+       command: [python]
+       source: |
+          import random
+          i = random.randint(1, 100)
+          print(i)

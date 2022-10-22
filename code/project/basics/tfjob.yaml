@@ -1,0 +1,21 @@
+apiVersion: kubeflow.org/v1
+kind: TFJob
+metadata:
+  namespace: kubeflow
+  generateName: distributed-tfjob-
+spec:
+  tfReplicaSpecs:
+    Worker:
+      replicas: 2
+      restartPolicy: OnFailure
+      template:
+        spec:
+          containers:
+            - name: tensorflow
+              image: gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
+              command:
+                - "python"
+                - "/var/tf_mnist/mnist_with_summaries.py"
+                - "--log_dir=/train/metrics"
+                - "--learning_rate=0.01"
+                - "--batch_size=100"
