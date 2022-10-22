@@ -1,7 +1,7 @@
 apiVersion: kubeflow.org/v1
 kind: TFJob
 metadata:
-  name: multi-worker
+  name: multi-worker-training
 spec:
   runPolicy:
     cleanPodPolicy: None
@@ -13,13 +13,13 @@ spec:
         spec:
           containers:
             - name: tensorflow
-              image: kubeflowimages/multi_worker_strategy:v20200522-2a5b081c
+              image: kubeflow/multi-worker-strategy:v0.1
               volumeMounts:
                 - mountPath: /train
                   name: training
               resources:
                 limits:
-                  nvidia.com/gpu: 1
+                  cpu: 1
           volumes:
             - name: training
               persistentVolumeClaim:
