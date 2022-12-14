@@ -58,7 +58,7 @@ def main(args):
   # layers on each device across all workers
   # if your GPUs don't support NCCL, replace "communication" with another
   strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(
-      communication=tf.distribute.experimental.CollectiveCommunication.NCCL)
+      communication=tf.distribute.experimental.CollectiveCommunication.AUTO)
 
   BATCH_SIZE_PER_REPLICA = 64
   BATCH_SIZE = BATCH_SIZE_PER_REPLICA * strategy.num_replicas_in_sync
