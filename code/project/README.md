@@ -1,7 +1,7 @@
 # Project Setup
 
 ```
-cd code/project
+cd project/
 k3d cluster create distml
 k create ns kubeflow
 kns kubeflow

@@ -1,9 +1,13 @@
 # Multi-worker Distributed Training
 
+```
+cd project/code
+```
 
-1.  Build a image
+1.  Build an image
     ```
     docker build -f Dockerfile -t kubeflow/multi-worker-strategy:v0.1 .
+    k3d image import kubeflow/multi-worker-strategy:v0.1
     ```
 
 2.  Specify your storageClassName and create a persistent volume claim to save 

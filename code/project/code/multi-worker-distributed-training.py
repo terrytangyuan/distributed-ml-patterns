@@ -57,6 +57,7 @@ def main(args):
   # MultiWorkerMirroredStrategy creates copies of all variables in the model's
   # layers on each device across all workers
   # if your GPUs don't support NCCL, replace "communication" with another
+  # https://www.tensorflow.org/tutorials/distribute/keras
   strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(
       communication=tf.distribute.experimental.CollectiveCommunication.AUTO)
 
@@ -66,6 +67,7 @@ def main(args):
   with strategy.scope():
     ds_train = make_datasets_unbatched().batch(BATCH_SIZE).repeat()
     options = tf.data.Options()
+    # https://www.tensorflow.org/tutorials/distribute/input
     options.experimental_distribute.auto_shard_policy = \
         tf.data.experimental.AutoShardPolicy.DATA
     ds_train = ds_train.with_options(options)

@@ -14,6 +14,7 @@ spec:
           containers:
             - name: tensorflow
               image: kubeflow/multi-worker-strategy:v0.1
+              imagePullPolicy: IfNotPresent
               volumeMounts:
                 - mountPath: /train
                   name: training
