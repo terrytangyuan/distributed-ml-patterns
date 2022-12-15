@@ -1,8 +1,26 @@
 # Project Setup
 
+## Cluster
+
 ```
 cd project/
+```
+
+Via `kind`:
+
+```
+go install sigs.k8s.io/kind@v0.17.0
+kind create cluster --name distml
+```
+
+Or via `k3d`:
+
+```
 k3d cluster create distml
+```
+
+
+```
 k create ns kubeflow
 kns kubeflow
 k kustomize manifests | k apply -f -

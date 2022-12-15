@@ -7,7 +7,10 @@ cd project/code
 1.  Build an image
     ```
     docker build -f Dockerfile -t kubeflow/multi-worker-strategy:v0.1 .
+    # If using k3d
     k3d image import kubeflow/multi-worker-strategy:v0.1 --cluster distml
+    # If using kind
+    kind load docker-image kubeflow/multi-worker-strategy:v0.1 --name distml
     ```
 
 2.  Specify your storageClassName and create a persistent volume claim to save 
