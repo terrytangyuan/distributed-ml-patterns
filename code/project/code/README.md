@@ -24,3 +24,11 @@ cd project/code
     ```
     kubectl create -f multi-worker-tfjob.yaml
     ```
+
+4.  Access the trained model
+```
+kubectl create -f access-model.yaml 
+kubectl exec --stdin --tty access-model -- ls /train/saved_model
+kubectl cp access-model:/train ./trained_model/
+```
+

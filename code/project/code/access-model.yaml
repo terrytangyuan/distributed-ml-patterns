@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: access-model
+spec:
+  containers:
+  - name: alpine
+    image: alpine:latest
+    command: ['sleep', 'infinity']
+    volumeMounts:
+    - name: model
+      mountPath: /train
+  volumes:
+  - name: model
+    persistentVolumeClaim:
+      claimName: strategy-volume
