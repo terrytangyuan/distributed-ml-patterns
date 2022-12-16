@@ -26,9 +26,17 @@ cd project/code
     ```
 
 4.  Access the trained model
-```
-kubectl create -f access-model.yaml 
-kubectl exec --stdin --tty access-model -- ls /train/saved_model
-kubectl cp access-model:/train ./trained_model/
-```
+    ```
+    kubectl create -f access-model.yaml 
+    kubectl exec --stdin --tty access-model -- ls /train/saved_model
+    kubectl cp access-model:/train ./trained_model/
 
+    kubectl cp ./trained_model/ access-model:/mnt/pvc/train/saved_model
+    ```
+
+5.  Model serving
+
+    ```
+    curl -s "https://raw.githubusercontent.com/kserve/kserve/release-0.10/hack/quick_install.sh" | bash
+    kubectl create -f inference-service.yaml
+    ```

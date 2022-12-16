@@ -7,4 +7,4 @@ spec:
   predictor:
     tensorflow:
       # https://kserve.github.io/website/modelserving/storage/pvc/pvc/
-      storageUri: "pvc://access-model/train/saved_model"
+      storageUri: "pvc://strategy-volume/train/saved_model"
