@@ -4,12 +4,12 @@ metadata:
   name: access-model
 spec:
   containers:
-  - name: alpine
+  - name: model-storage
     image: alpine:latest
     command: ['sleep', 'infinity']
     volumeMounts:
     - name: model
-      mountPath: /train
+      mountPath: /trained_model
   volumes:
   - name: model
     persistentVolumeClaim:

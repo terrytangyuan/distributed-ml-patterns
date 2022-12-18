@@ -16,11 +16,11 @@ spec:
               image: kubeflow/multi-worker-strategy:v0.1
               imagePullPolicy: IfNotPresent
               volumeMounts:
-                - mountPath: /train
+                - mountPath: /trained_model
                   name: training
               resources:
                 limits:
-                  cpu: 1
+                  cpu: 500m
           volumes:
             - name: training
               persistentVolumeClaim:
