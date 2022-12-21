@@ -28,6 +28,14 @@ Create a TFJob:
 kubectl create -f multi-worker-tfjob.yaml
 ```
 
+## Model loading & prediction
+
+```
+kubectl create -f predict-service.py
+kubectl exec --stdin --tty predict-service -- bin/bash
+python3 /predict-service.py
+```
+
 ## Model serving
 
 ```
