@@ -1,0 +1,78 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: tfjob-wf-
+  namespace: kubeflow
+spec:
+  entrypoint: tfjob-wf
+  templates:
+  - name: tfjob-wf
+    steps:
+    - - name: data-ingestion-step
+        template: data-ingestion-step
+        arguments:
+          parameters:
+          - name: min
+            value: 10
+          - name: max
+            value: 30
+          - name: length
+            value: 5
+    - - name: distributed-tf-training-step
+        template: distributed-tf-training-step
+
+  - name: data-ingestion-step
+    serviceAccountName: argo
+    inputs:
+      parameters:
+      - name: min
+      - name: max
+      - name: length
+    # TODO: User "system:serviceaccount:kubeflow:argo" cannot create resource "configmaps" in API group "" in the namespace "kubeflow"
+    # memoize:
+    #   key: "{{inputs.parameters.min}}-{{inputs.parameters.max}}-{{inputs.parameters.length}}"
+    #   maxAge: "1h"
+    #   cache:
+    #     configMap:
+    #       name: my-config
+    #       key: step-cache
+    script:
+      image: python:alpine3.6
+      command: [python]
+      source: |
+        import random
+        print(random.sample(range({{inputs.parameters.min}}, {{inputs.parameters.max}}), {{inputs.parameters.length}}))
+
+  - name: distributed-tf-training-step
+    serviceAccountName: training-operator
+    resource:
+      action: create
+      setOwnerReference: true
+      manifest: |
+        apiVersion: kubeflow.org/v1
+        kind: TFJob
+        metadata:
+          name: multi-worker-training
+        spec:
+          runPolicy:
+            cleanPodPolicy: None
+          tfReplicaSpecs:
+            Worker:
+              replicas: 2
+              restartPolicy: Never
+              template:
+                spec:
+                  containers:
+                    - name: tensorflow
+                      image: kubeflow/multi-worker-strategy:v0.1
+                      imagePullPolicy: IfNotPresent
+                      volumeMounts:
+                        - mountPath: /trained_model
+                          name: training
+                      resources:
+                        limits:
+                          cpu: 500m
+                  volumes:
+                    - name: training
+                      persistentVolumeClaim:
+                        claimName: strategy-volume

@@ -31,7 +31,7 @@ kubectl create -f multi-worker-tfjob.yaml
 ## Model loading & prediction
 
 ```
-kubectl create -f predict-service.py
+kubectl create -f predict-service.yaml
 kubectl exec --stdin --tty predict-service -- bin/bash
 python3 /predict-service.py
 ```
@@ -61,6 +61,12 @@ curl -v -H "Host: ${SERVICE_HOSTNAME}" http://${INGRESS_HOST}:${INGRESS_PORT}/v1
 python3 -m pip install tensorflow-metal
 python3 -m pip install tensorflow-macos==2.11.0
 python3 -m pip install tensorflow-serving-api==2.11.0
+```
+
+## Workflow
+
+```
+kubectl create -f workflow.yaml
 ```
 
 ## Debugging

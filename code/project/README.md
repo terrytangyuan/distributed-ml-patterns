@@ -10,7 +10,7 @@ Via `kind`:
 
 ```
 go install sigs.k8s.io/kind@v0.17.0
-kind create cluster --name distml
+kind create cluster --name distml --image kindest/node:v1.25.3
 ```
 
 Or via `k3d`:
@@ -37,4 +37,5 @@ k create -f manifests/e2e-demo/e2e-workflow.yaml
 
 ```
 k3d cluster rm distml
+kind delete cluster --name distml
 ```

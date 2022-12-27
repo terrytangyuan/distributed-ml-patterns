@@ -19,3 +19,5 @@ datasets, _ = tfds.load(name='mnist', with_info=True, as_supervised=True)
 
 ds = datasets['test'].map(scale).cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 
+# TODO: Visualize the images and compare with the classified result
+model.predict(ds)
