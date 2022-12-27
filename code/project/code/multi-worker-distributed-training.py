@@ -17,12 +17,13 @@ def make_datasets_unbatched():
     image = tf.cast(image, tf.float32)
     image /= 255
     return image, label
-
-  datasets, _ = tfds.load(name='mnist', with_info=True, as_supervised=True)
+  # Use Fashion-MNIST: https://www.tensorflow.org/datasets/catalog/fashion_mnist
+  datasets, _ = tfds.load(name='fashion_mnist', with_info=True, as_supervised=True)
 
   return datasets['train'].map(scale).cache().shuffle(BUFFER_SIZE)
 
 
+# TODO: Use different models and pick top two for model serving
 def build_and_compile_cnn_model():
   model = models.Sequential()
   model.add(
@@ -58,7 +59,7 @@ def main(args):
   # layers on each device across all workers
   # if your GPUs don't support NCCL, replace "communication" with another
   # https://www.tensorflow.org/tutorials/distribute/keras
-  strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(
+  strategy = tf.distribute.MultiWorkerMirroredStrategy(
       communication=tf.distribute.experimental.CollectiveCommunication.AUTO)
 
   BATCH_SIZE_PER_REPLICA = 64
