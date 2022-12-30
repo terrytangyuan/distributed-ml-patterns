@@ -39,7 +39,7 @@ python3 /predict-service.py
 ## Model serving
 
 ```
-curl -s "https://raw.githubusercontent.com/kserve/kserve/release-0.10/hack/quick_install.sh" | bash
+curl -s "https://raw.githubusercontent.com/kserve/kserve/v0.10.0-rc1/hack/quick_install.sh" | bash
 kubectl create -f inference-service.yaml
 # Remove readiness check if needed
 kubectl edit deployment flower-sample-predictor-default-00001-deployment
