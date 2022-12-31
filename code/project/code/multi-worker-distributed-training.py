@@ -25,6 +25,7 @@ def make_datasets_unbatched():
 
 # TODO: Use different models and pick top two for model serving
 def build_and_compile_cnn_model():
+  print("Training CNN model")
   model = models.Sequential()
   model.add(
       layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
@@ -34,6 +35,59 @@ def build_and_compile_cnn_model():
   model.add(layers.Conv2D(64, (3, 3), activation='relu'))
   model.add(layers.Flatten())
   model.add(layers.Dense(64, activation='relu'))
+  model.add(layers.Dense(10, activation='softmax'))
+
+  model.summary()
+
+  model.compile(optimizer='adam',
+                loss='sparse_categorical_crossentropy',
+                metrics=['accuracy'])
+
+  return model
+
+# https://d2l.ai/chapter_convolutional-modern/batch-norm.html#concise-implementation
+def build_and_compile_cnn_model_with_batch_norm():
+  print("Training CNN model with batch normalization")
+  model = models.Sequential()
+  model.add(
+      layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+  model.add(layers.BatchNormalization())
+  model.add(layers.Activation('sigmoid'))
+  model.add(layers.MaxPooling2D((2, 2)))
+  model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+  model.add(layers.BatchNormalization())
+  model.add(layers.Activation('sigmoid'))
+  model.add(layers.MaxPooling2D((2, 2)))
+  model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+  model.add(layers.Flatten())
+  model.add(layers.Dense(64, activation='relu'))
+  model.add(layers.Dense(10, activation='softmax'))
+
+  model.summary()
+
+  model.compile(optimizer='adam',
+                loss='sparse_categorical_crossentropy',
+                metrics=['accuracy'])
+
+  return model
+
+# https://d2l.ai/chapter_convolutional-modern/alexnet.html
+def build_and_compile_alexnet_model():
+  print("Training AlexNet model")
+  model = models.Sequential()
+  model.add(layers.Conv2D(filters=96, kernel_size=11, strides=4, activation='relu', input_shape=(28, 28, 1)))
+  model.add(layers.MaxPool2D(pool_size=3, strides=2))
+  model.add(layers.Conv2D(filters=256, kernel_size=5, padding='same', activation='relu'))
+  model.add(layers.MaxPool2D(pool_size=3, strides=2))
+  model.add(layers.Conv2D(filters=384, kernel_size=3, padding='same', activation='relu'))
+  model.add(layers.Conv2D(filters=384, kernel_size=3, padding='same', activation='relu'))
+  model.add(layers.Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
+  model.add(layers.MaxPool2D(pool_size=3, strides=2))
+  model.add(layers.Flatten())
+  model.add(layers.Dense(4096, activation='relu'))
+  model.add(layers.Dropout(0.5))
+  model.add(layers.Dense(4096, activation='relu'))
+  model.add(layers.Dropout(0.5))
   model.add(layers.Dense(10, activation='softmax'))
 
   model.summary()
@@ -60,7 +114,7 @@ def main(args):
   # if your GPUs don't support NCCL, replace "communication" with another
   # https://www.tensorflow.org/tutorials/distribute/keras
   strategy = tf.distribute.MultiWorkerMirroredStrategy(
-      communication=tf.distribute.experimental.CollectiveCommunication.AUTO)
+      communication_options=tf.distribute.experimental.CommunicationOptions(implementation=tf.distribute.experimental.CollectiveCommunication.AUTO))
 
   BATCH_SIZE_PER_REPLICA = 64
   BATCH_SIZE = BATCH_SIZE_PER_REPLICA * strategy.num_replicas_in_sync
@@ -73,7 +127,7 @@ def main(args):
         tf.data.experimental.AutoShardPolicy.DATA
     ds_train = ds_train.with_options(options)
     # Model building/compiling need to be within `strategy.scope()`.
-    multi_worker_model = build_and_compile_cnn_model()
+    multi_worker_model = build_and_compile_cnn_model_with_batch_norm()
 
   # Define the checkpoint directory to store the checkpoints
   checkpoint_dir = args.checkpoint_dir

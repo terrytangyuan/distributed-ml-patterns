@@ -2,9 +2,11 @@
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
-  name: flower-sample
+  name: flower-sample-2
 spec:
   predictor:
     tensorflow:
+      # TODO: error: could not parse reference: tensorflow/serving:emacski/tensorflow-serving:2.5.1"
+      # runtimeVersion: "emacski/tensorflow-serving:2.5.1"
       # https://kserve.github.io/website/modelserving/storage/pvc/pvc/
       storageUri: "pvc://strategy-volume/saved_model"

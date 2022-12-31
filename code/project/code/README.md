@@ -28,6 +28,11 @@ Create a TFJob:
 kubectl create -f multi-worker-tfjob.yaml
 ```
 
+After making code changes, run the following to resubmit the job:
+```
+kubectl delete tfjob --all; docker build -f Dockerfile -t kubeflow/multi-worker-strategy:v0.1 .; kind load docker-image kubeflow/multi-worker-strategy:v0.1 --name distml; kubectl create -f multi-worker-tfjob.yaml
+```
+
 ## Model loading & prediction
 
 ```
