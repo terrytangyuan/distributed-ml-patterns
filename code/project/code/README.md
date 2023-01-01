@@ -82,6 +82,14 @@ kubectl create -f access-model.yaml
 kubectl exec --stdin --tty access-model -- ls /trained_model
 # Manually copy
 # kubectl cp trained_model access-model:/pv/trained_model -c model-storage
+
+mkdir trained_model/1/
+cp -R trained_model/saved_model/ trained_model/1/1
+kubectl exec --stdin --tty flower-sample-predictor-default-00001-deployment-84759dfc5f6wfj -c kserve-container -- /usr/bin/tensorflow_model_server --model_name=flower-sample \
+      --port=9000 \
+      --rest_api_port=8080 \
+      --model_base_path=/mnt \
+      --rest_api_timeout_in_ms=60000
 ```
 
 ## Cleanup

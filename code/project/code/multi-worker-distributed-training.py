@@ -72,22 +72,18 @@ def build_and_compile_cnn_model_with_batch_norm():
   return model
 
 # https://d2l.ai/chapter_convolutional-modern/alexnet.html
-def build_and_compile_alexnet_model():
-  print("Training AlexNet model")
+def build_and_compile_cnn_model_with_dropout():
+  print("Training CNN model with dropout")
   model = models.Sequential()
-  model.add(layers.Conv2D(filters=96, kernel_size=11, strides=4, activation='relu', input_shape=(28, 28, 1)))
-  model.add(layers.MaxPool2D(pool_size=3, strides=2))
-  model.add(layers.Conv2D(filters=256, kernel_size=5, padding='same', activation='relu'))
-  model.add(layers.MaxPool2D(pool_size=3, strides=2))
-  model.add(layers.Conv2D(filters=384, kernel_size=3, padding='same', activation='relu'))
-  model.add(layers.Conv2D(filters=384, kernel_size=3, padding='same', activation='relu'))
-  model.add(layers.Conv2D(filters=256, kernel_size=3, padding='same', activation='relu'))
-  model.add(layers.MaxPool2D(pool_size=3, strides=2))
+  model.add(
+      layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+  model.add(layers.MaxPooling2D((2, 2)))
+  model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+  model.add(layers.MaxPooling2D((2, 2)))
+  model.add(layers.Dropout(0.5))
+  model.add(layers.Conv2D(64, (3, 3), activation='relu'))
   model.add(layers.Flatten())
-  model.add(layers.Dense(4096, activation='relu'))
-  model.add(layers.Dropout(0.5))
-  model.add(layers.Dense(4096, activation='relu'))
-  model.add(layers.Dropout(0.5))
+  model.add(layers.Dense(64, activation='relu'))
   model.add(layers.Dense(10, activation='softmax'))
 
   model.summary()
@@ -127,7 +123,7 @@ def main(args):
         tf.data.experimental.AutoShardPolicy.DATA
     ds_train = ds_train.with_options(options)
     # Model building/compiling need to be within `strategy.scope()`.
-    multi_worker_model = build_and_compile_cnn_model_with_batch_norm()
+    multi_worker_model = build_and_compile_cnn_model_with_dropout()
 
   # Define the checkpoint directory to store the checkpoints
   checkpoint_dir = args.checkpoint_dir
