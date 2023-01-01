@@ -47,12 +47,6 @@ python3 /predict-service.py
 # Install KServe
 curl -s "https://raw.githubusercontent.com/kserve/kserve/v0.10.0-rc1/hack/quick_install.sh" | bash
 
-# Workaround for this error: No versions of servable flower-sample found under base path /mnt/models. Did you forget to name your leaf directory as a number (eg. '/1/')
-kubectl exec --stdin --tty predict-service -- bin/bash
-mkdir trained_model/saved_model_versions
-cp -R trained_model/saved_model/ trained_model/saved_model_versions/
-mv trained_model/saved_model_versions/saved_model/ trained_model/saved_model_versions/1
-
 # Create inference service
 kubectl create -f inference-service.yaml
 
@@ -66,7 +60,7 @@ export INGRESS_PORT=8080
 MODEL_NAME=flower-sample                                                                                                      
 INPUT_PATH=@./inference-input.json
 SERVICE_HOSTNAME=$(kubectl get inferenceservice ${MODEL_NAME} -o jsonpath='{.status.url}' | cut -d "/" -f 3)
-curl -v -H "Host: ${SERVICE_HOSTNAME}" http://${INGRESS_HOST}:${INGRESS_PORT}/v1/models/$MODEL_NAME:predict -d $INPUT_PATH
+curl -v -H "Host: ${SERVICE_HOSTNAME}" "http://${INGRESS_HOST}:${INGRESS_PORT}/v1/models/$MODEL_NAME:predict" -d $INPUT_PATH
 
 ## TODO: gRPC serving. Not working yet
 # Client-side requirements
@@ -89,7 +83,10 @@ kubectl create -f access-model.yaml
 kubectl exec --stdin --tty access-model -- ls /trained_model
 # Manually copy
 # kubectl cp trained_model access-model:/pv/trained_model -c model-storage
+```
 
+Run TFServing commands in the KServe container:
+```
 kubectl exec --stdin --tty flower-sample-predictor-default-00001-deployment-84759dfc5f6wfj -c kserve-container -- /usr/bin/tensorflow_model_server --model_name=flower-sample \
       --port=9000 \
       --rest_api_port=8080 \
@@ -102,7 +99,8 @@ kubectl exec --stdin --tty flower-sample-predictor-default-00001-deployment-8475
 ```
 kubectl delete tfjob multi-worker-training
 kubectl delete inferenceservice flower-sample
-kubectl delete pod access-model
+kubectl delete pod access-model --force --grace-period=0
+kubectl delete pod predict-service --force --grace-period=0
 kubectl delete pvc strategy-volume
 ```
 
