@@ -27,8 +27,9 @@ def make_datasets_unbatched():
 def build_and_compile_cnn_model():
   print("Training CNN model")
   model = models.Sequential()
+  model.add(layers.Input(shape=(28, 28, 1), name='image_bytes'))
   model.add(
-      layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+      layers.Conv2D(32, (3, 3), activation='relu'))
   model.add(layers.MaxPooling2D((2, 2)))
   model.add(layers.Conv2D(64, (3, 3), activation='relu'))
   model.add(layers.MaxPooling2D((2, 2)))
@@ -49,8 +50,9 @@ def build_and_compile_cnn_model():
 def build_and_compile_cnn_model_with_batch_norm():
   print("Training CNN model with batch normalization")
   model = models.Sequential()
+  model.add(layers.Input(shape=(28, 28, 1), name='image_bytes'))
   model.add(
-      layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+      layers.Conv2D(32, (3, 3), activation='relu'))
   model.add(layers.BatchNormalization())
   model.add(layers.Activation('sigmoid'))
   model.add(layers.MaxPooling2D((2, 2)))
@@ -75,8 +77,9 @@ def build_and_compile_cnn_model_with_batch_norm():
 def build_and_compile_cnn_model_with_dropout():
   print("Training CNN model with dropout")
   model = models.Sequential()
+  model.add(layers.Input(shape=(28, 28, 1), name='image_bytes'))
   model.add(
-      layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+      layers.Conv2D(32, (3, 3), activation='relu'))
   model.add(layers.MaxPooling2D((2, 2)))
   model.add(layers.Conv2D(64, (3, 3), activation='relu'))
   model.add(layers.MaxPooling2D((2, 2)))
