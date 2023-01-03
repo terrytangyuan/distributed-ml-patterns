@@ -185,13 +185,14 @@ def main(args):
     # Save to a path that is unique across workers.
     model_path = args.saved_model_dir + '/worker_tmp_' + str(TASK_INDEX)
 
-  # multi_worker_model.save(model_path)
+
   signatures = {
     "serving_default": _get_serve_image_fn(multi_worker_model).get_concrete_function(
         tf.TensorSpec(shape=[None], dtype=tf.string, name='image_bytes')
     )
   }
 
+  # https://www.tensorflow.org/api_docs/python/tf/saved_model/save
   tf.saved_model.save(multi_worker_model, model_path, signatures=signatures)
 
 
