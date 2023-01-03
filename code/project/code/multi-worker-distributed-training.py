@@ -99,12 +99,13 @@ def build_and_compile_cnn_model_with_dropout():
 
 
 def decay(epoch):
-  if epoch < 3: #pylint: disable=no-else-return
+  if epoch < 3:
     return 1e-3
   if 3 <= epoch < 7:
     return 1e-4
   return 1e-5
 
+# https://cloud.google.com/blog/topics/developers-practitioners/add-preprocessing-functions-tensorflow-models-and-deploy-vertex-ai
 def _preprocess(bytes_inputs):
     decoded = tf.io.decode_jpeg(bytes_inputs, channels=1)
     resized = tf.image.resize(decoded, size=(28, 28))

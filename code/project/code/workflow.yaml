@@ -20,6 +20,8 @@ spec:
             value: 5
     - - name: distributed-tf-training-step
         template: distributed-tf-training-step
+    - - name: create-model-serving-service
+        template: create-model-serving-service
 
   - name: data-ingestion-step
     serviceAccountName: argo
@@ -48,6 +50,7 @@ spec:
     resource:
       action: create
       setOwnerReference: true
+      successCondition: status.replicaStatuses.Worker.succeeded = 2
       manifest: |
         apiVersion: kubeflow.org/v1
         kind: TFJob
@@ -66,6 +69,7 @@ spec:
                     - name: tensorflow
                       image: kubeflow/multi-worker-strategy:v0.1
                       imagePullPolicy: IfNotPresent
+                      command: ["python", "/multi-worker-distributed-training.py", "--saved_model_dir", "/trained_model/saved_model_versions/1/", "--checkpoint_dir", "/trained_model/checkpoint"]
                       volumeMounts:
                         - mountPath: /trained_model
                           name: training
@@ -76,3 +80,20 @@ spec:
                     - name: training
                       persistentVolumeClaim:
                         claimName: strategy-volume
+
+  - name: create-model-serving-service
+    serviceAccountName: training-operator
+    successCondition: status.modelStatus.states.transitionStatus = UpToDate
+    resource:
+      action: create
+      setOwnerReference: true
+      manifest: |
+        apiVersion: serving.kserve.io/v1beta1
+        kind: InferenceService
+        metadata:
+          name: flower-sample
+        spec:
+          predictor:
+            tensorflow:
+              image: "emacski/tensorflow-serving:2.6.0"
+              storageUri: "pvc://strategy-volume/saved_model_versions"

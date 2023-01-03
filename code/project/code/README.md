@@ -99,6 +99,7 @@ kubectl exec --stdin --tty flower-sample-predictor-default-00001-deployment-8475
 ```
 kubectl delete tfjob multi-worker-training
 kubectl delete inferenceservice flower-sample
+kubectl delete pods --selector=app=flower-sample-predictor-default-00001 --force --grace-period=0
 kubectl delete pod access-model --force --grace-period=0
 kubectl delete pod predict-service --force --grace-period=0
 kubectl delete pvc strategy-volume

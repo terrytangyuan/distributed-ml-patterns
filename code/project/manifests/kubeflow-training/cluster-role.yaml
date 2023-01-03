@@ -7,6 +7,12 @@ metadata:
   name: training-operator
 rules:
   - apiGroups:
+      - serving.kserve.io
+    resources:
+      - inferenceservices
+    verbs:
+      - "*"
+  - apiGroups:
       - kubeflow.org
     resources:
       - tfjobs
