@@ -105,6 +105,18 @@ def decay(epoch):
     return 1e-4
   return 1e-5
 
+def _preprocess(bytes_inputs):
+    decoded = tf.io.decode_jpeg(bytes_inputs, channels=1)
+    resized = tf.image.resize(decoded, size=(28, 28))
+    return tf.cast(resized, dtype=tf.uint8)
+
+def _get_serve_image_fn(model):
+    @tf.function(input_signature=[tf.TensorSpec([None], dtype=tf.string, name='image_bytes')])
+    def serve_image_fn(bytes_inputs):
+        decoded_images = tf.map_fn(_preprocess, bytes_inputs, dtype=tf.uint8)
+        return model(decoded_images)
+    return serve_image_fn
+
 
 def main(args):
 
@@ -155,7 +167,7 @@ def main(args):
   # number of steps per epoch. Note that the numbers here are for demonstration
   # purposes only and may not sufficiently produce a model with good quality.
   multi_worker_model.fit(ds_train,
-                         epochs=10,
+                         epochs=1,
                          steps_per_epoch=70,
                          callbacks=callbacks)
 
@@ -173,7 +185,14 @@ def main(args):
     # Save to a path that is unique across workers.
     model_path = args.saved_model_dir + '/worker_tmp_' + str(TASK_INDEX)
 
-  multi_worker_model.save(model_path)
+  # multi_worker_model.save(model_path)
+  signatures = {
+    "serving_default": _get_serve_image_fn(multi_worker_model).get_concrete_function(
+        tf.TensorSpec(shape=[None], dtype=tf.string, name='image_bytes')
+    )
+  }
+
+  tf.saved_model.save(multi_worker_model, model_path, signatures=signatures)
 
 
 if __name__ == '__main__':
