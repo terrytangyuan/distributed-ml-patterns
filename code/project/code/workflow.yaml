@@ -94,6 +94,8 @@ spec:
           name: flower-sample
         spec:
           predictor:
-            tensorflow:
+            model:
+              modelFormat:
+                name: tensorflow
               image: "emacski/tensorflow-serving:2.6.0"
               storageUri: "pvc://strategy-volume/saved_model_versions"

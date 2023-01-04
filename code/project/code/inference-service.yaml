@@ -5,7 +5,9 @@ metadata:
   name: flower-sample
 spec:
   predictor:
-    tensorflow:
+    model:
+      modelFormat:
+        name: tensorflow
       image: "emacski/tensorflow-serving:2.6.0"
       # https://kserve.github.io/website/modelserving/storage/pvc/pvc/
       # Note that we are skipping `mountPath: /trained_model`
