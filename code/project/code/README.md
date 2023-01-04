@@ -69,6 +69,15 @@ python3 -m pip install tensorflow-macos==2.11.0
 python3 -m pip install tensorflow-serving-api==2.11.0
 ```
 
+Autoscaled inference service:
+```
+# https://github.com/rakyll/hey
+brew install hey
+kubectl create -f autoscaled-inference-service.yaml
+
+hey -z 30s -c 5 -m POST -host ${SERVICE_HOSTNAME} -D inference-input.json "http://${INGRESS_HOST}:${INGRESS_PORT}/v1/models/$MODEL_NAME:predict"
+```
+
 ## Workflow
 
 ```

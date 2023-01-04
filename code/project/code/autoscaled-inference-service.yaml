@@ -1,0 +1,15 @@
+# https://kserve.github.io/website/master/modelserving/autoscaling/autoscaling/#create-inferenceservice
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: flower-sample
+spec:
+  predictor:
+    # https://kserve.github.io/website/master/reference/api/#serving.kserve.io/v1beta1.ComponentExtensionSpec
+    scaleTarget: 1
+    scaleMetric: concurrency
+    model:
+      modelFormat:
+        name: tensorflow
+      image: "emacski/tensorflow-serving:2.6.0"
+      storageUri: "pvc://strategy-volume/saved_model_versions"
