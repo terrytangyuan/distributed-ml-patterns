@@ -5,6 +5,8 @@ metadata:
   namespace: kubeflow
 spec:
   entrypoint: tfjob-wf
+  podGC:
+    strategy: OnPodSuccess
   volumes:
   - name: model
     persistentVolumeClaim:
@@ -15,8 +17,8 @@ spec:
     steps:
     - - name: data-ingestion-step
         template: data-ingestion-step
-    - - name: distributed-tf-training-step
-        template: distributed-tf-training-step
+    - - name: distributed-tf-training-steps
+        template: distributed-tf-training-steps
     - - name: model-selection-step
         template: model-selection-step
     - - name: create-model-serving-service
@@ -36,8 +38,16 @@ spec:
       imagePullPolicy: IfNotPresent
       command: ["python", "/data-ingestion.py"]
 
+  - name: distributed-tf-training-steps
+    steps:
+    - - name: cnn-model
+        template: cnn-model
+      - name: cnn-model-with-dropout
+        template: cnn-model-with-dropout
+      - name: cnn-model-with-batch-norm
+        template: cnn-model-with-batch-norm
 
-  - name: distributed-tf-training-step
+  - name: cnn-model
     serviceAccountName: training-operator
     resource:
       action: create
@@ -47,7 +57,7 @@ spec:
         apiVersion: kubeflow.org/v1
         kind: TFJob
         metadata:
-          name: multi-worker-training
+          generateName: multi-worker-training-
         spec:
           runPolicy:
             cleanPodPolicy: None
@@ -61,7 +71,79 @@ spec:
                     - name: tensorflow
                       image: kubeflow/multi-worker-strategy:v0.1
                       imagePullPolicy: IfNotPresent
-                      command: ["python", "/multi-worker-distributed-training.py", "--saved_model_dir", "/trained_model/saved_model_versions/1/", "--checkpoint_dir", "/trained_model/checkpoint"]
+                      command: ["python", "/multi-worker-distributed-training.py", "--saved_model_dir", "/trained_model/saved_model_versions/1/", "--checkpoint_dir", "/trained_model/checkpoint", "--model_type", "cnn"]
+                      volumeMounts:
+                        - mountPath: /trained_model
+                          name: training
+                      resources:
+                        limits:
+                          cpu: 500m
+                  volumes:
+                    - name: training
+                      persistentVolumeClaim:
+                        claimName: strategy-volume
+
+  - name: cnn-model-with-dropout
+    serviceAccountName: training-operator
+    resource:
+      action: create
+      setOwnerReference: true
+      successCondition: status.replicaStatuses.Worker.succeeded = 2
+      manifest: |
+        apiVersion: kubeflow.org/v1
+        kind: TFJob
+        metadata:
+          generateName: multi-worker-training-
+        spec:
+          runPolicy:
+            cleanPodPolicy: None
+          tfReplicaSpecs:
+            Worker:
+              replicas: 2
+              restartPolicy: Never
+              template:
+                spec:
+                  containers:
+                    - name: tensorflow
+                      image: kubeflow/multi-worker-strategy:v0.1
+                      imagePullPolicy: IfNotPresent
+                      command: ["python", "/multi-worker-distributed-training.py", "--saved_model_dir", "/trained_model/saved_model_versions/2/", "--checkpoint_dir", "/trained_model/checkpoint", "--model_type", "dropout"]
+                      volumeMounts:
+                        - mountPath: /trained_model
+                          name: training
+                      resources:
+                        limits:
+                          cpu: 500m
+                  volumes:
+                    - name: training
+                      persistentVolumeClaim:
+                        claimName: strategy-volume
+
+  - name: cnn-model-with-batch-norm
+    serviceAccountName: training-operator
+    resource:
+      action: create
+      setOwnerReference: true
+      successCondition: status.replicaStatuses.Worker.succeeded = 2
+      manifest: |
+        apiVersion: kubeflow.org/v1
+        kind: TFJob
+        metadata:
+          generateName: multi-worker-training-
+        spec:
+          runPolicy:
+            cleanPodPolicy: None
+          tfReplicaSpecs:
+            Worker:
+              replicas: 2
+              restartPolicy: Never
+              template:
+                spec:
+                  containers:
+                    - name: tensorflow
+                      image: kubeflow/multi-worker-strategy:v0.1
+                      imagePullPolicy: IfNotPresent
+                      command: ["python", "/multi-worker-distributed-training.py", "--saved_model_dir", "/trained_model/saved_model_versions/3/", "--checkpoint_dir", "/trained_model/checkpoint", "--model_type", "batch_norm"]
                       volumeMounts:
                         - mountPath: /trained_model
                           name: training

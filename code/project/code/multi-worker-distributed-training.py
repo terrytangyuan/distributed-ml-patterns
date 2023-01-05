@@ -139,7 +139,14 @@ def main(args):
         tf.data.experimental.AutoShardPolicy.DATA
     ds_train = ds_train.with_options(options)
     # Model building/compiling need to be within `strategy.scope()`.
-    multi_worker_model = build_and_compile_cnn_model_with_dropout()
+    if args.model_type == "cnn":
+      multi_worker_model = build_and_compile_cnn_model()
+    elif args.model_type == "dropout":
+      multi_worker_model = build_and_compile_cnn_model_with_dropout()
+    elif args.model_type == "batch_norm":
+      multi_worker_model = build_and_compile_cnn_model_with_batch_norm()
+    else:
+      raise Exception("Unsupported model type: %s" % args.model_type)
 
   # Define the checkpoint directory to store the checkpoints
   checkpoint_dir = args.checkpoint_dir
@@ -220,6 +227,11 @@ if __name__ == '__main__':
                       type=str,
                       required=True,
                       help='Tensorflow checkpoint directory.')
+
+  parser.add_argument('--model_type',
+                      type=str,
+                      required=True,
+                      help='Type of model to train.')
 
   parsed_args = parser.parse_args()
   main(parsed_args)
