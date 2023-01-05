@@ -10,14 +10,6 @@ spec:
     steps:
     - - name: data-ingestion-step
         template: data-ingestion-step
-        arguments:
-          parameters:
-          - name: min
-            value: 10
-          - name: max
-            value: 30
-          - name: length
-            value: 5
     - - name: distributed-tf-training-step
         template: distributed-tf-training-step
     - - name: create-model-serving-service
@@ -25,25 +17,18 @@ spec:
 
   - name: data-ingestion-step
     serviceAccountName: argo
-    inputs:
-      parameters:
-      - name: min
-      - name: max
-      - name: length
-    # TODO: User "system:serviceaccount:kubeflow:argo" cannot create resource "configmaps" in API group "" in the namespace "kubeflow"
-    # memoize:
-    #   key: "{{inputs.parameters.min}}-{{inputs.parameters.max}}-{{inputs.parameters.length}}"
-    #   maxAge: "1h"
-    #   cache:
-    #     configMap:
-    #       name: my-config
-    #       key: step-cache
-    script:
-      image: python:alpine3.6
-      command: [python]
-      source: |
-        import random
-        print(random.sample(range({{inputs.parameters.min}}, {{inputs.parameters.max}}), {{inputs.parameters.length}}))
+    memoize:
+      key: "step-cache"
+      maxAge: "1h"
+      cache:
+        configMap:
+          name: my-config
+          key: step-cache
+    container:
+      image: kubeflow/multi-worker-strategy:v0.1
+      imagePullPolicy: IfNotPresent
+      command: ["python", "/data-ingestion.py"]
+
 
   - name: distributed-tf-training-step
     serviceAccountName: training-operator
