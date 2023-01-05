@@ -3,6 +3,8 @@ import tensorflow as tf
 from tensorflow import keras
 import tensorflow_datasets as tfds
 import shutil
+import os
+
 
 BUFFER_SIZE = 10000
 BATCH_SIZE = 64
@@ -25,6 +27,9 @@ for i in range(1, 4):
     best_accuracy = accuracy
     best_model_path = model_path
 
+destination = "trained_model/saved_model_versions/4"
+if os.path.exists(destination):
+  shutil.rmtree(destination)
 
-destination = shutil.copytree(best_model_path, "trained_model/saved_model_versions/4")
+shutil.copytree(best_model_path, destination)
 print("Best model with accuracy %f is copied to %s" % (best_accuracy, destination))

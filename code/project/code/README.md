@@ -41,6 +41,12 @@ kubectl exec --stdin --tty predict-service -- bin/bash
 python3 /predict-service.py
 ```
 
+## Model selection
+
+```
+python3 /model-selection.py
+```
+
 ## Model serving
 
 ```

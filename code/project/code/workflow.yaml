@@ -5,6 +5,11 @@ metadata:
   namespace: kubeflow
 spec:
   entrypoint: tfjob-wf
+  volumes:
+  - name: model
+    persistentVolumeClaim:
+      claimName: strategy-volume
+
   templates:
   - name: tfjob-wf
     steps:
@@ -12,6 +17,8 @@ spec:
         template: data-ingestion-step
     - - name: distributed-tf-training-step
         template: distributed-tf-training-step
+    - - name: model-selection-step
+        template: model-selection-step
     - - name: create-model-serving-service
         template: create-model-serving-service
 
@@ -65,6 +72,16 @@ spec:
                     - name: training
                       persistentVolumeClaim:
                         claimName: strategy-volume
+
+  - name: model-selection-step
+    serviceAccountName: argo
+    container:
+      image: kubeflow/multi-worker-strategy:v0.1
+      imagePullPolicy: IfNotPresent
+      command: ["python", "/model-selection.py"]
+      volumeMounts:
+      - name: model
+        mountPath: /trained_model
 
   - name: create-model-serving-service
     serviceAccountName: training-operator
