@@ -4,7 +4,7 @@ from tensorflow import keras
 import tensorflow_datasets as tfds
 
 
-model = keras.models.load_model("trained_model/saved_model")
+model = keras.models.load_model("trained_model/saved_model_versions")
 
 BUFFER_SIZE = 10000
 BATCH_SIZE = 64

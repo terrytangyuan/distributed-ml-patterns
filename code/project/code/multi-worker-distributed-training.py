@@ -186,6 +186,8 @@ def main(args):
     # Save to a path that is unique across workers.
     model_path = args.saved_model_dir + '/worker_tmp_' + str(TASK_INDEX)
 
+  multi_worker_model.save(model_path)
+
 
   signatures = {
     "serving_default": _get_serve_image_fn(multi_worker_model).get_concrete_function(
@@ -205,6 +207,8 @@ if __name__ == '__main__':
   # to decide if a worker is chief, get TASK_INDEX in Cluster info
   tf_config = json.loads(os.environ.get('TF_CONFIG') or '{}')
   TASK_INDEX = tf_config['task']['index']
+
+  # TODO: Add flag to train different models
 
   parser = argparse.ArgumentParser()
   parser.add_argument('--saved_model_dir',
