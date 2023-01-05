@@ -109,7 +109,7 @@ spec:
                     - name: tensorflow
                       image: kubeflow/multi-worker-strategy:v0.1
                       imagePullPolicy: IfNotPresent
-                      command: ["python", "/multi-worker-distributed-training.py", "--saved_model_dir", "/trained_model/saved_model_versions/2/", "--checkpoint_dir", "/trained_model/checkpoint", "--model_type", "cnn"]
+                      command: ["python", "/multi-worker-distributed-training.py", "--saved_model_dir", "/trained_model/saved_model_versions/2/", "--checkpoint_dir", "/trained_model/checkpoint", "--model_type", "dropout"]
                       volumeMounts:
                         - mountPath: /trained_model
                           name: training
@@ -146,7 +146,7 @@ spec:
                     - name: tensorflow
                       image: kubeflow/multi-worker-strategy:v0.1
                       imagePullPolicy: IfNotPresent
-                      command: ["python", "/multi-worker-distributed-training.py", "--saved_model_dir", "/trained_model/saved_model_versions/3/", "--checkpoint_dir", "/trained_model/checkpoint", "--model_type", "batch_norm"]
+                      command: ["python", "/multi-worker-distributed-training.py", "--saved_model_dir", "/trained_model/saved_model_versions/3/", "--checkpoint_dir", "/trained_model/checkpoint", "--model_type", "dropout"]
                       volumeMounts:
                         - mountPath: /trained_model
                           name: training
