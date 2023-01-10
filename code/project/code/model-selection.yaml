@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: model-selection
+spec:
+  containers:
+  - name: predict
+    image: kubeflow/multi-worker-strategy:v0.1
+    command: ["python", "/model-selection.py"]
+    volumeMounts:
+    - name: model
+      mountPath: /trained_model
+  volumes:
+  - name: model
+    persistentVolumeClaim:
+      claimName: strategy-volume
