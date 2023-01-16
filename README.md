@@ -1,6 +1,7 @@
 # Distributed Machine Learning Patterns
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/TerryTangYuan?style=social)](https://twitter.com/TerryTangYuan)
+[![Mastodon](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/mastodon.svg)](https://fosstodon.org/@terrytangyuan)
 [![Twitter Follow](https://img.shields.io/twitter/follow/DistML?style=social)](https://twitter.com/DistML)
 
 <img align="right" src="images/book-front-cover.png" alt="book-front-cover" width="50%" height="50%">
