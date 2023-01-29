@@ -29,7 +29,7 @@ Scaling up models from personal devices to large distributed clusters is one of 
 
 ## About the book
 
-*Distributed Machine Learning Patterns* is filled with practical patterns for running machine learning systems on distributed Kubernetes clusters in the cloud. Each pattern is designed to help solve common challenges faced when building distributed machine learning systems, including supporting distributed model training, handling unexpected failures and dynamic model serving traffic. Real-world scenarios provide clear examples of how to apply each pattern, alongside the potential trade offs for each approach. Once you’ve mastered these cutting edge techniques, you’ll put them all into practice and finish up by building a comprehensive distributed machine learning system.
+*Distributed Machine Learning Patterns* is filled with practical patterns for running machine learning systems on distributed Kubernetes clusters in the cloud. Each pattern is designed to help solve common challenges faced when building distributed machine learning systems, including supporting distributed model training, handling unexpected failures, and dynamic model serving traffic. Real-world scenarios provide clear examples of how to apply each pattern, alongside the potential trade-offs for each approach. Once you’ve mastered these cutting-edge techniques, you’ll put them all into practice and finish up by building a comprehensive distributed machine learning system.
 
 ## About the reader
 
