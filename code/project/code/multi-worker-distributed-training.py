@@ -23,7 +23,6 @@ def make_datasets_unbatched():
   return datasets['train'].map(scale).cache().shuffle(BUFFER_SIZE)
 
 
-# TODO: Use different models and pick top two for model serving
 def build_and_compile_cnn_model():
   print("Training CNN model")
   model = models.Sequential()
@@ -214,8 +213,6 @@ if __name__ == '__main__':
   # to decide if a worker is chief, get TASK_INDEX in Cluster info
   tf_config = json.loads(os.environ.get('TF_CONFIG') or '{}')
   TASK_INDEX = tf_config['task']['index']
-
-  # TODO: Add flag to train different models
 
   parser = argparse.ArgumentParser()
   parser.add_argument('--saved_model_dir',

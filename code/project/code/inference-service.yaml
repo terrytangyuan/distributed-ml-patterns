@@ -8,6 +8,7 @@ spec:
     model:
       modelFormat:
         name: tensorflow
+      # This is only needed on Mac M1
       image: "emacski/tensorflow-serving:2.6.0"
       # https://kserve.github.io/website/modelserving/storage/pvc/pvc/
       # Note that we are skipping `mountPath: /trained_model`
