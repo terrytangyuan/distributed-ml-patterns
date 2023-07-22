@@ -16,7 +16,7 @@ kind create cluster --name distml --image kindest/node:v1.25.3
 Or via `k3d`:
 
 ```
-k3d cluster create distml --image rancher/k3s:v1.25.3-rc3-k3s1
+k3d cluster create distml --image rancher/k3s:v1.25.3-k3s1
 ```
 
 
