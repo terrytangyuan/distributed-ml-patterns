@@ -40,18 +40,20 @@ For data analysts, data scientists, and software engineers familiar with the bas
 Yuan is a founding engineer at [Akuity](https://akuity.io/), building an enterprise-ready platform for developers. He has previously led data science and engineering teams at [Alibaba](https://www.alibabagroup.com/) and [Uptake](https://uptake.com/), focusing on AI infrastructure and AutoML platform. He's a project lead of [Argo](https://argoproj.github.io/) and [Kubeflow](https://github.com/kubeflow), maintainer of [TensorFlow](https://github.com/tensorflow/tensorflow) and [XGBoost](https://github.com/dmlc/xgboost), and author of numerous [open source projects](https://github.com/sponsors/terrytangyuan). In addition, Yuan [authored](https://terrytangyuan.github.io/cv#publications) three machine learning books and several impactful publications. He's a [regular speaker](https://terrytangyuan.github.io/cv#talks) at various conferences and a technical advisor, leader, and mentor at [various organizations](https://terrytangyuan.github.io/cv#services). 
 
 ## Supporting Quotes
+*"This is a wonderful book for those wanting to understand how to be more effective with Machine Learning at scale, explained clearly and from first principles!"*
+**-- Laurence Moroney, AI Developer Relations Lead at Google**
 
-Laurence Moroney, AI Developer Relations Lead at Google
-> "This is a wonderful book for those wanting to understand how to be more effective with Machine Learning at scale, explained clearly and from first principles!"
+*"This book is an exceptionally timely and comprehensive guide to developing, running, and managing machine learning systems in a distributed environment. It covers essential topics such as data partitioning, ingestion, model training, serving, and workflow management. What truly sets this book apart is its discussion of these topics from a pattern perspective, accompanied by real-world examples and widely adopted systems like Kubernetes, Kubeflow, and Argo. I highly recommend it!"*
+**-- Yuan Chen, Principal Software Engineer at Apple**
 
-Yuan Chen, Principal Software Engineer at Apple
-> "This book is an exceptionally timely and comprehensive guide to developing, running, and managing machine learning systems in a distributed environment. It covers essential topics such as data partitioning, ingestion, model training, serving, and workflow management. What truly sets this book apart is its discussion of these topics from a pattern perspective, accompanied by real-world examples and widely adopted systems like Kubernetes, Kubeflow, and Argo. I highly recommend it!"
 
-Brian Ray, Global Head of Data Science and Artificial Intelligence at Eviden
-> "This book provides a high-level understanding of patterns with practical code examples needed for all MLOps engineering tasks. This is a must-read for anyone in the field."
+*"This book provides a high-level understanding of patterns with practical code examples needed for all MLOps engineering tasks. This is a must-read for anyone in the field."*
+**-- Brian Ray, Global Head of Data Science and Artificial Intelligence at Eviden**
 
-James Lamb, Staff Data Engineer at SpotHero
-> "This book weaves together concepts from distributed systems, machine learning, and site reliability engineering in a way that’s approachable for beginners and that’ll excite and inspire experienced practitioners. As soon as I finished reading, I was ready to start building."
 
-Ryan Russon, Senior Manager of Model Training at Capital One
-> "Whatever your role is in the data ecosystem (scientist, analyst, or engineer), if you are looking to take your knowledge and skills to the next level, then this book is for you. This book is an amazing guide to the concepts and state-of-the-art when it comes to designing resilient and scalable, ML systems for both training and serving models. Regardless of what platform you may be working with, this book teaches you the patterns you should be familiar with when trying to scale out your systems."
+*"This book weaves together concepts from distributed systems, machine learning, and site reliability engineering in a way that’s approachable for beginners and that’ll excite and inspire experienced practitioners. As soon as I finished reading, I was ready to start building."*
+**-- James Lamb, Staff Data Engineer at SpotHero**
+
+
+*"Whatever your role is in the data ecosystem (scientist, analyst, or engineer), if you are looking to take your knowledge and skills to the next level, then this book is for you. This book is an amazing guide to the concepts and state-of-the-art when it comes to designing resilient and scalable, ML systems for both training and serving models. Regardless of what platform you may be working with, this book teaches you the patterns you should be familiar with when trying to scale out your systems."*
+**-- Ryan Russon, Senior Manager of Model Training at Capital One**
