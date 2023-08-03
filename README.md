@@ -55,3 +55,7 @@ Yuan is a founding engineer at [Akuity](https://akuity.io/), building an enterpr
 
 *"Whatever your role is in the data ecosystem (scientist, analyst, or engineer), if you are looking to take your knowledge and skills to the next level, then this book is for you. This book is an amazing guide to the concepts and state-of-the-art when it comes to designing resilient and scalable, ML systems for both training and serving models. Regardless of what platform you may be working with, this book teaches you the patterns you should be familiar with when trying to scale out your systems."*
 **-- Ryan Russon, Senior Manager of Model Training at Capital One**
+
+
+*"AI is the new electricity, and distributed systems is the new power grid. Whether you are a research scientist, engineer, or product developer, you will find the best practices and recipes in this book to scale up your greatest endeavors."*
+**Linxi "Jim" Fan, Senior AI Research Scientist at NVIDIA, Stanford PhD**
