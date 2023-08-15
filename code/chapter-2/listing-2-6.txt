@@ -1,9 +1,9 @@
 if get_worker_rank() == 0:  #A 
-	create_and_send_shards(dataset)  #A
+    create_and_send_shards(dataset)  #A
 shard = read_next_shard_locally()  #B
 while shard is not None:
     model.train(shard)  #C
-	shard = read_next_shard_locally()  #D
+    shard = read_next_shard_locally()  #D
 
 #A Create and send shards to all other worker machines from the worker machine with rank 0.
 #B Read the next shard available locally in this worker machine.
