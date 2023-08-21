@@ -21,16 +21,16 @@ k3d cluster create distml --image rancher/k3s:v1.25.3-k3s1
 
 
 ```
-k create ns kubeflow
+kubectl create ns kubeflow
 kns kubeflow
-k kustomize manifests | k apply -f -
+kubectl kustomize manifests | kubectl apply -f -
 ```
 
 # Run Workflow
 
 ```
-k create -f manifests/e2e-demo/workflows-templates-tfjob.yaml
-k create -f manifests/e2e-demo/e2e-workflow.yaml
+kubectl create -f manifests/e2e-demo/workflows-templates-tfjob.yaml
+kubectl create -f manifests/e2e-demo/e2e-workflow.yaml
 ```
 
 # Clean-up
