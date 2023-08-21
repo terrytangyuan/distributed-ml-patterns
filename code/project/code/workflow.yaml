@@ -5,6 +5,13 @@ metadata:
   namespace: kubeflow
 spec:
   entrypoint: tfjob-wf
+  podGC:
+    strategy: OnPodSuccess
+  volumes:
+  - name: model
+    persistentVolumeClaim:
+      claimName: strategy-volume
+
   templates:
   - name: tfjob-wf
     steps:
@@ -16,12 +23,6 @@ spec:
         template: model-selection-step
     - - name: create-model-serving-service
         template: create-model-serving-service
-  podGC:
-    strategy: OnPodSuccess
-  volumes:
-  - name: model
-    persistentVolumeClaim:
-      claimName: strategy-volume
 
   - name: data-ingestion-step
     serviceAccountName: argo
