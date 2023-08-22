@@ -15,6 +15,11 @@ k3d image import kubeflow/multi-worker-strategy:v0.1 --cluster distml
 kind load docker-image kubeflow/multi-worker-strategy:v0.1 --name distml
 ```
 
+Switch to "kubeflow" namespace:
+```
+kubectl config set-context --current --namespace=kubeflow
+```
+
 Specify your storageClassName and create a persistent volume claim to save 
 models and checkpoints
 ```
