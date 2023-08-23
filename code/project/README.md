@@ -28,10 +28,7 @@ kubectl kustomize manifests | kubectl apply -f -
 
 # Run Workflow
 
-```
-kubectl create -f manifests/e2e-demo/workflows-templates-tfjob.yaml
-kubectl create -f manifests/e2e-demo/e2e-workflow.yaml
-```
+See instructions [here](https://github.com/terrytangyuan/distributed-ml-patterns/blob/main/code/project/code/README.md).
 
 # Clean-up
 
