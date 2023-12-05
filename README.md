@@ -66,3 +66,7 @@ Yuan is a founding engineer at [Akuity](https://akuity.io/), building an enterpr
 *"AI is the new electricity, and distributed systems is the new power grid. Whether you are a research scientist, engineer, or product developer, you will find the best practices and recipes in this book to scale up your greatest endeavors."*
 
 **-- Linxi "Jim" Fan, Senior AI Research Scientist at NVIDIA, Stanford PhD**
+
+*"This book discusses various architectural approaches to tackle common data science problems such as scaling machine learning processes and building robust workflows and pipelines. It serves as an excellent introduction to the world of MLops for data scientists and ML engineers who want to enhance their knowledge in this field."*
+
+**-- Rami Krispin, Senior Data Science and Engineering Manager**
