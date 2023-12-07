@@ -67,6 +67,6 @@ Yuan is a founding engineer at [Akuity](https://akuity.io/), building an enterpr
 
 **-- Linxi "Jim" Fan, Senior AI Research Scientist at NVIDIA, Stanford PhD**
 
-*"This book discusses various architectural approaches to tackle common data science problems such as scaling machine learning processes and building robust workflows and pipelines. It serves as an excellent introduction to the world of MLops for data scientists and ML engineers who want to enhance their knowledge in this field."*
+*"This book discusses various architectural approaches to tackle common data science problems such as scaling machine learning processes and building robust workflows and pipelines. It serves as an excellent introduction to the world of MLOps for data scientists and ML engineers who want to enhance their knowledge in this field."*
 
 **-- Rami Krispin, Senior Data Science and Engineering Manager**
