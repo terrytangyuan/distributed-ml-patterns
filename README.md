@@ -1,9 +1,10 @@
 # Distributed Machine Learning Patterns
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/TerryTangYuan?style=social)](https://twitter.com/TerryTangYuan)
-[![Mastodon](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/mastodon.svg)](https://fosstodon.org/@terrytangyuan)
 [![LinkedIn](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/linkedin.svg)](https://www.linkedin.com/in/terrytangyuan)
-[![Twitter Follow](https://img.shields.io/twitter/follow/DistML?style=social)](https://twitter.com/DistML)
+[![Bluesky](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/bluesky.svg)](https://bsky.app/profile/terrytangyuan.xyz)
+[![GitHub](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/github.svg)](https://github.com/terrytangyuan)
+[![Twitter](https://img.shields.io/twitter/follow/TerryTangYuan?style=social)](https://twitter.com/TerryTangYuan)
+[![Mastodon](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/mastodon.svg)](https://fosstodon.org/@terrytangyuan)
 
 <img align="right" src="images/english-front-cover.png" alt="book-front-cover" width="50%" height="50%">
 
