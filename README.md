@@ -5,11 +5,11 @@
 [![LinkedIn](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/linkedin.svg)](https://www.linkedin.com/in/terrytangyuan)
 [![Twitter Follow](https://img.shields.io/twitter/follow/DistML?style=social)](https://twitter.com/DistML)
 
-<img align="right" src="images/book-front-cover.png" alt="book-front-cover" width="50%" height="50%">
+<img align="right" src="images/english-front-cover.png" alt="book-front-cover" width="50%" height="50%">
 
 This repository contains references and code for the book *Distributed Machine Learning Patterns* from [Manning Publications](https://bit.ly/2RKv8Zo) by [Yuan Tang](https://github.com/terrytangyuan).
 
-:fire: **Korean and Simplified Chinese versions are available from Tsinghua University Press and Hanbit Media!**
+:fire: **[Korean](images/korean-cover.jpg) and [Chinese](images/chinese-cover.pdf) versions are available from Tsinghua University Press and Hanbit Media!**
 
 [Manning](https://bit.ly/2RKv8Zo), [Amazon](https://www.amazon.com/dp/1617299022/), [Barnes & Noble](https://www.barnesandnoble.com/w/distributed-machine-learning-patterns-yuan-tang/1140209010), [Powell’s]( https://www.powells.com/book/distributed-machine-learning-patterns-9781617299025), [Bookshop](https://bookshop.org/p/books/distributed-machine-learning-patterns-yuan-tang/17491200)
 
