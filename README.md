@@ -4,7 +4,6 @@
 [![Bluesky](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/bluesky.svg)](https://bsky.app/profile/terrytangyuan.xyz)
 [![GitHub](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/github.svg)](https://github.com/terrytangyuan)
 [![Twitter](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/twitter.svg)](https://twitter.com/TerryTangYuan)
-[![Mastodon](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/mastodon.svg)](https://fosstodon.org/@terrytangyuan)
 
 <img align="right" src="images/english-front-cover.png" alt="book-front-cover" width="50%" height="50%">
 
