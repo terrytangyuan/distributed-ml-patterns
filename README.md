@@ -1,9 +1,10 @@
 # Distributed Machine Learning Patterns
 
-[![LinkedIn](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/linkedin.svg)](https://www.linkedin.com/in/terrytangyuan)
-[![Bluesky](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/bluesky.svg)](https://bsky.app/profile/terrytangyuan.xyz)
-[![GitHub](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/github.svg)](https://github.com/terrytangyuan)
-[![Twitter](https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/twitter.svg)](https://twitter.com/TerryTangYuan)
+<a href="https://www.linkedin.com/in/terrytangyuan"><img src="https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/linkedin.svg" alt="LinkedIn"></a>
+<a href="https://bsky.app/profile/terrytangyuan.xyz"><img src="https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/bluesky.svg" alt="Bluesky"></a>
+<a href="https://x.com/TerryTangYuan"><img src="https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/twitter.svg" alt="Twitter"></a>
+<a href="https://fosstodon.org/@terrytangyuan"><img src="https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/mastodon.svg" alt="Mastodon"></a>
+<a href="https://substack.com/@terrytangyuan"><img src="https://raw.githubusercontent.com/terrytangyuan/terrytangyuan/master/imgs/substack.svg" alt="Substack"></a>
 
 ![book](images/english-front-cover.png)
 
